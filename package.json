@@ -1,0 +1,22 @@
+{
+  "name": "zenn-hono-drizzle-todo",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.14.0",
+    "@hono/zod-openapi": "^0.19.2",
+    "drizzle-orm": "^0.41.0",
+    "drizzle-zod": "^0.7.1",
+    "hono": "^4.7.5",
+    "pg": "^8.14.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "@types/pg": "^8.11.11",
+    "drizzle-kit": "^0.30.6",
+    "tsx": "^4.7.1"
+  }
+}
