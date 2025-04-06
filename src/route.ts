@@ -16,7 +16,7 @@ import {
 // Create
 export const createTodoRoute = createRoute({
   method: "post",
-  path: "/todo",
+  path: "/",
   request: {
     body: {
       content: {
@@ -59,7 +59,7 @@ export const createTodoRoute = createRoute({
 // Read
 export const readTodoRoute = createRoute({
   method: 'get',
-  path: "/todo/{id}",
+  path: "/{id}",
   request: {
     params: readTodoReqPathParamSchema,
   },
@@ -85,7 +85,7 @@ export const readTodoRoute = createRoute({
 
 export const readTodoListRoute = createRoute({
   method: 'get',
-  path: "/todo",
+  path: "/",
   responses: {
     200: {
       content: {
@@ -102,7 +102,7 @@ export const readTodoListRoute = createRoute({
 // Update
 export const updateTodoRoute = createRoute({
   method: "put",
-  path: "/todo/{id}",
+  path: "/{id}",
   request: {
     params: updateTodoReqPathParamSchema,
     body: {
@@ -145,7 +145,7 @@ export const updateTodoRoute = createRoute({
 // Delete
 export const deleteTodoRoute = createRoute({
   method: "delete",
-  path: "/todo/{id}",
+  path: "/{id}",
   request: {
     params: deleteTodoReqPathParamSchema,
   },

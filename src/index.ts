@@ -10,20 +10,21 @@ export type Variables = {
 }
 
 const app = new OpenAPIHono<{ Variables: Variables }>()
-
-app.use(requestId())
-app.use(logger())
-app.use(async (c, next) => {
-  const db = drizzle('postgres://myuser:mypassword@localhost:5432/');
-  c.set('db', db)
-  await next()
-})
-
-app.route('/', api)
+  .use(requestId())
+  .use(logger())
+  .use(async (c, next) => {
+    const db = drizzle('postgres://myuser:mypassword@localhost:5432/');
+    c.set('db', db)
+    await next()
+  })
+  .route('/todo', api)
 
 serve({
   fetch: app.fetch,
-  port: 3000
+  port: 3003
 }, (info) => {
   console.log(`Server is running on http://localhost:${info.port}`)
 })
+
+export default app
+export type AppType = typeof app

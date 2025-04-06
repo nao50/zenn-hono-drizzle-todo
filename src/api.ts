@@ -19,11 +19,7 @@ const app = new OpenAPIHono<{ Variables: Variables }>({
       }, 400);
     }
   },
-})
-
-////////////////////////////////////////////////////////////////
-// Create
-app.openapi(createTodoRoute, async (c) => {
+}).openapi(createTodoRoute, async (c) => {
   const data = c.req.valid('json')
   const db = c.get('db')
   try {
@@ -37,11 +33,7 @@ app.openapi(createTodoRoute, async (c) => {
     }
     return c.json({id: c.get('requestId'), code: 400, message: error}, 400)
   }
-});
-
-////////////////////////////////////////////////////////////////
-// Read
-app.openapi(readTodoRoute, async (c) => {
+}).openapi(readTodoRoute, async (c) => {
   const { id } = c.req.valid('param')
   const db = c.get('db')
   const result = await db.select().from(todoTable).where(eq(todoTable.id, id));
@@ -49,17 +41,11 @@ app.openapi(readTodoRoute, async (c) => {
     return c.json({id: c.get('requestId'), code: 404, message: 'Not Found'}, 404)
   }
   return c.json(result[0], 200);
-});
-
-app.openapi(readTodoListRoute, async (c) => {
+}).openapi(readTodoListRoute, async (c) => {
   const db = c.get('db')
   const result = await db.select().from(todoTable);
   return c.json(result, 200);
-});
-
-////////////////////////////////////////////////////////////////
-// Update
-app.openapi(updateTodoRoute, async (c) => {
+}).openapi(updateTodoRoute, async (c) => {
   const { id } = c.req.valid('param')
   const data = c.req.valid('json')
   const db = c.get('db')
@@ -68,11 +54,7 @@ app.openapi(updateTodoRoute, async (c) => {
     return c.json({id: c.get('requestId'), code: 404, message: 'Not Found'}, 404)
   }
   return c.json(result[0], 200);
-});
-
-////////////////////////////////////////////////////////////////
-// Delete
-app.openapi(deleteTodoRoute, async (c) => {
+}).openapi(deleteTodoRoute, async (c) => {
   const { id } = c.req.valid('param')
   const db = c.get('db')
   const result = await db.delete(todoTable).where(eq(todoTable.id, id)).returning();
